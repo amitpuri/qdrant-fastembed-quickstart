@@ -32,6 +32,56 @@ python demo.py
 4. When to use sparse vs dense embeddings
 5. Integration with vector databases
 
+## Demo Overview: Working with LLMs
+
+This demo showcases SPLADE's advanced sparse embedding approach that's particularly powerful for LLM applications requiring both lexical precision and semantic understanding. Here's what makes this demo crucial for sophisticated LLM workflows:
+
+### What This Demo Does
+
+The demo demonstrates SPLADE's sophisticated approach that:
+- **Generates learned term weights**: Shows how SPLADE creates importance scores for terms based on training, not just statistical frequency
+- **Demonstrates term expansion**: Illustrates how SPLADE can generate weights for related terms not present in the original text
+- **Compares with traditional methods**: Highlights why learned weights outperform statistical TF-IDF for LLM applications
+- **Shows sparse efficiency**: Demonstrates how only non-zero weights are stored for efficient retrieval
+
+### How This is Useful for LLMs
+
+**1. Advanced RAG Systems**
+- **Learned Term Importance**: SPLADE's learned weights better understand which terms are important for retrieval
+- **Term Expansion for Better Recall**: Automatically expands queries to include related terms, improving LLM context retrieval
+- **Vocabulary Mismatch Handling**: Helps LLMs find relevant documents even when users use different terminology
+- **Domain Adaptation**: Learned weights adapt to specific domains, improving retrieval for specialized LLM applications
+
+**2. Technical Documentation LLMs**
+- **Scientific Paper Search**: Perfect for LLMs working with research papers and technical documentation
+- **Code Documentation**: Excellent for developer-focused LLMs searching through codebases and technical docs
+- **Legal Document Analysis**: Ideal for legal LLMs that need precise term matching with semantic understanding
+- **Medical Literature Search**: Great for healthcare LLMs working with medical literature and research
+
+**3. LLM Query Understanding**
+- **Synonym and Related Term Handling**: Automatically expands user queries to include related concepts
+- **Typo Resilience**: Handles out-of-vocabulary tokens gracefully, improving LLM robustness
+- **Context-Aware Term Weighting**: Understands which terms are important in specific contexts
+- **Multi-Language Support**: Can handle cross-lingual term expansion for multilingual LLM applications
+
+**4. Production LLM Applications**
+- **Enterprise Search**: Ideal for corporate LLMs working with technical documentation and knowledge bases
+- **Customer Support**: Perfect for support LLMs that need to find relevant documentation quickly
+- **Research Assistants**: Excellent for academic LLMs that need to search through large document collections
+- **Content Management**: Great for LLMs working with content management systems and documentation
+
+**5. Hybrid LLM Architectures**
+- **Multi-Modal Retrieval**: Can be combined with dense embeddings for comprehensive search coverage
+- **Query Expansion**: Automatically improves user queries by expanding to related terms
+- **Context Enrichment**: Provides richer context for LLM generation through better term understanding
+- **Scalable Search**: Efficient sparse representation enables fast retrieval for real-time LLM applications
+
+**6. LLM Response Quality**
+- **Better Source Retrieval**: Finds more relevant documents through term expansion and learned weights
+- **Reduced Hallucinations**: Provides better context through improved document retrieval
+- **Domain-Specific Accuracy**: Learned weights improve accuracy for specialized domains
+- **Comprehensive Coverage**: Term expansion ensures LLMs don't miss relevant information
+
 ## Key Concepts
 
 ### Learned Weights

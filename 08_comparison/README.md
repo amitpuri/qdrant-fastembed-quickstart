@@ -33,6 +33,74 @@ python demo.py
 4. Best practices for production systems
 5. Hybrid approaches and combinations
 
+## Demo Overview: Working with LLMs
+
+This demo provides a comprehensive comparison of all FastEmbed methods specifically tailored for LLM applications, helping you choose the right approach for your LLM use case. Here's what makes this demo essential for LLM system design:
+
+### What This Demo Does
+
+The demo provides a complete comparison that:
+- **Compares all methods side-by-side**: Shows performance characteristics, use cases, and trade-offs
+- **Provides decision trees**: Guides you through method selection based on your LLM requirements
+- **Shows hybrid approaches**: Demonstrates how to combine methods for optimal LLM performance
+- **Offers production guidance**: Provides best practices for deploying LLM systems
+
+### How This is Useful for LLMs
+
+**1. LLM System Architecture Design**
+- **Method Selection**: Helps you choose the right embedding method for your specific LLM use case
+- **Performance Optimization**: Guides you through performance vs accuracy trade-offs for LLM applications
+- **Scalability Planning**: Helps you plan for scaling LLM applications with the right embedding approach
+- **Cost Optimization**: Enables you to optimize costs while maintaining LLM performance
+
+**2. RAG System Development**
+- **Retrieval Strategy**: Guides you in choosing the best retrieval strategy for your RAG system
+- **Context Quality**: Helps you optimize context quality for better LLM responses
+- **Query Understanding**: Assists in selecting methods that best understand user queries
+- **Response Accuracy**: Guides you toward methods that improve LLM response accuracy
+
+**3. LLM Application Types**
+- **General Purpose LLMs**: Helps you choose methods for general-purpose LLM applications
+- **Domain-Specific LLMs**: Guides selection for specialized LLM applications (medical, legal, technical)
+- **Conversational AI**: Assists in choosing methods for chatbot and conversational AI systems
+- **Question-Answering**: Helps select methods for Q&A systems and knowledge base search
+
+**4. Production LLM Deployment**
+- **Performance Requirements**: Helps you match method selection to your performance requirements
+- **Resource Constraints**: Guides you through resource-constrained LLM deployments
+- **Scalability Needs**: Assists in planning for growing LLM applications
+- **Quality Requirements**: Helps you balance quality vs performance for LLM applications
+
+**5. LLM Development Workflow**
+- **Prototyping**: Guides you in choosing methods for LLM prototyping and development
+- **Testing and Evaluation**: Helps you select methods for testing and evaluating LLM performance
+- **A/B Testing**: Assists in setting up A/B tests for different LLM approaches
+- **Iterative Improvement**: Provides framework for continuously improving LLM systems
+
+**6. LLM Use Case Optimization**
+- **Search Applications**: Guides selection for LLM-powered search applications
+- **Document Analysis**: Helps choose methods for LLM document analysis systems
+- **Knowledge Management**: Assists in selecting methods for LLM knowledge management systems
+- **Customer Support**: Guides selection for LLM customer support systems
+
+**7. LLM Performance Tuning**
+- **Speed Optimization**: Helps you optimize LLM response speed with the right embedding method
+- **Accuracy Improvement**: Guides you toward methods that improve LLM response accuracy
+- **Memory Management**: Assists in optimizing memory usage for LLM applications
+- **Storage Optimization**: Helps you optimize storage requirements for LLM systems
+
+**8. LLM System Integration**
+- **Hybrid Approaches**: Shows how to combine multiple methods for optimal LLM performance
+- **Pipeline Design**: Guides you in designing LLM pipelines with the right embedding methods
+- **API Integration**: Helps you integrate embedding methods into LLM API systems
+- **Microservices**: Assists in designing microservices architectures for LLM applications
+
+**9. LLM Quality Assurance**
+- **Testing Strategies**: Provides testing strategies for different LLM embedding approaches
+- **Quality Metrics**: Helps you define and measure quality metrics for LLM applications
+- **Performance Monitoring**: Guides you in monitoring LLM system performance
+- **Continuous Improvement**: Provides framework for continuously improving LLM quality
+
 ## Method Comparison Table
 
 | Method        | Type      | Dimensions | Speed     | Memory    | Storage   | Accuracy  |

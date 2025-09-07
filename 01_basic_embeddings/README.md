@@ -32,6 +32,45 @@ python demo.py
 4. Understanding embedding dimensions and properties
 5. When to use dense embeddings
 
+## Demo Overview: Working with LLMs
+
+This demo demonstrates the foundation of semantic search and retrieval-augmented generation (RAG) systems that power modern LLM applications. Here's what the demo does and why it's crucial for LLM workflows:
+
+### What This Demo Does
+
+The demo creates a complete semantic search pipeline that:
+- **Converts text to vectors**: Transforms documents into 384-dimensional embeddings using the BAAI/bge-small-en-v1.5 model
+- **Stores in vector database**: Uploads embeddings to Qdrant for efficient similarity search
+- **Performs semantic search**: Finds relevant documents based on meaning, not just keywords
+- **Calculates similarities**: Shows how similar documents cluster together in vector space
+
+### How This is Useful for LLMs
+
+**1. RAG (Retrieval-Augmented Generation)**
+- LLMs can retrieve relevant context before generating responses
+- Improves accuracy by grounding responses in factual information
+- Reduces hallucinations by providing source material
+
+**2. Document Search and Q&A Systems**
+- Enables semantic search across large document collections
+- Powers question-answering systems that find relevant passages
+- Supports multi-turn conversations with context retrieval
+
+**3. Knowledge Base Integration**
+- Connects LLMs to external knowledge sources
+- Enables real-time information retrieval
+- Supports domain-specific applications (legal, medical, technical)
+
+**4. Context Management**
+- Helps LLMs understand document relationships
+- Enables smart context selection for long conversations
+- Improves response relevance through better context matching
+
+**5. Production LLM Applications**
+- Provides the foundation for enterprise LLM deployments
+- Enables scalable semantic search at production scale
+- Supports real-time retrieval for conversational AI
+
 ## Key Concepts
 
 ### Dense Embeddings

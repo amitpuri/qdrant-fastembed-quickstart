@@ -32,6 +32,50 @@ python demo.py
 4. Context-aware search capabilities
 5. Integration with Qdrant vector database
 
+## Demo Overview: Working with LLMs
+
+This demo showcases miniCOIL's unique approach to semantic search that's particularly valuable for LLM applications requiring both keyword precision and semantic understanding. Here's what makes this demo essential for advanced LLM workflows:
+
+### What This Demo Does
+
+The demo demonstrates miniCOIL's hybrid approach that:
+- **Combines keyword matching with semantic understanding**: Unlike pure semantic search, miniCOIL requires exact keyword matches while understanding their context
+- **Shows context-aware ranking**: Demonstrates how "vectors in medicine" ranks medical documents higher than engineering documents, even with the same keyword
+- **Illustrates the miniCOIL formula**: Shows how learned importance weights and semantic similarity work together
+- **Compares with traditional BM25**: Highlights why context understanding matters for LLM applications
+
+### How This is Useful for LLMs
+
+**1. Domain-Specific LLM Applications**
+- **Medical/Healthcare LLMs**: Ensures medical terms are matched in correct medical context
+- **Legal LLMs**: Maintains precision for legal terminology while understanding legal concepts
+- **Technical LLMs**: Balances exact technical term matching with semantic understanding
+- **Scientific LLMs**: Handles domain-specific vocabulary with contextual relevance
+
+**2. Hybrid Search for RAG Systems**
+- **Keyword + Semantic RAG**: Combines the precision of keyword matching with semantic understanding
+- **Context-Aware Retrieval**: Ensures retrieved documents match both keywords and intended meaning
+- **Domain-Specific Knowledge Bases**: Perfect for specialized LLM applications with technical vocabularies
+- **Multi-Modal Search**: Supports both exact term requirements and semantic similarity
+
+**3. LLM Response Quality**
+- **Reduces False Positives**: Prevents irrelevant documents from being retrieved due to keyword matches
+- **Improves Context Relevance**: Ensures LLMs receive contextually appropriate information
+- **Maintains Term Precision**: Preserves exact matching requirements while adding semantic intelligence
+- **Better Source Attribution**: Helps LLMs cite more relevant and accurate sources
+
+**4. Production LLM Systems**
+- **Enterprise Knowledge Management**: Ideal for corporate LLMs working with technical documentation
+- **Regulatory Compliance**: Ensures precise term matching for compliance-focused LLM applications
+- **Customer Support LLMs**: Balances exact product name matching with semantic understanding
+- **Research Assistant LLMs**: Perfect for academic and research applications requiring term precision
+
+**5. Advanced RAG Architectures**
+- **Multi-Stage Retrieval**: Can be combined with dense embeddings for comprehensive search
+- **Query Understanding**: Helps LLMs better understand user intent when keywords are ambiguous
+- **Contextual Ranking**: Improves the quality of retrieved context for LLM generation
+- **Domain Adaptation**: Easily adapts to different domains while maintaining keyword precision
+
 ## Key Concepts
 
 ### miniCOIL Formula

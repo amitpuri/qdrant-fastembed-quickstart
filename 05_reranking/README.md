@@ -32,6 +32,68 @@ python demo.py
 4. Performance vs accuracy trade-offs
 5. Integration with retrieval systems
 
+## Demo Overview: Working with LLMs
+
+This demo showcases reranking as a crucial component of production LLM systems, demonstrating how to improve the quality of retrieved context for better LLM responses. Here's what makes this demo essential for high-quality LLM applications:
+
+### What This Demo Does
+
+The demo demonstrates reranking's two-stage approach that:
+- **Shows initial retrieval results**: Demonstrates fast, broad search that retrieves many candidates
+- **Applies precise reranking**: Shows how specialized models re-score candidates for better precision
+- **Compares before/after results**: Illustrates the significant improvement in result quality
+- **Demonstrates the pipeline**: Shows the complete two-stage retrieval process
+
+### How This is Useful for LLMs
+
+**1. Production RAG Systems**
+- **Improved Context Quality**: Reranking ensures LLMs receive the most relevant context for generation
+- **Reduced Hallucinations**: Better context selection reduces the likelihood of LLM hallucinations
+- **Higher Response Accuracy**: More precise retrieval leads to more accurate LLM responses
+- **Better Source Attribution**: Helps LLMs cite more relevant and accurate sources
+
+**2. LLM Response Quality**
+- **Precision Over Recall**: Reranking prioritizes getting the most relevant results in the top positions
+- **Context Relevance**: Ensures retrieved documents are highly relevant to the user's query
+- **Multi-Signal Integration**: Can combine semantic, lexical, and other signals for better ranking
+- **Domain-Specific Optimization**: Can be fine-tuned for specific domains and use cases
+
+**3. Conversational AI and Chatbots**
+- **Better Conversation Flow**: Improved context selection leads to more coherent conversations
+- **Intent Understanding**: Reranking helps ensure retrieved context matches user intent
+- **Multi-Turn Context**: Maintains relevance across conversation turns
+- **Personalized Responses**: Better context selection enables more personalized LLM responses
+
+**4. Enterprise LLM Applications**
+- **Knowledge Base Search**: Perfect for corporate LLMs searching through company knowledge bases
+- **Customer Support**: Ideal for support LLMs that need to find the most relevant help articles
+- **Document Q&A**: Excellent for LLMs that answer questions about specific documents
+- **Compliance and Legal**: Great for LLMs that need to find precise legal or compliance information
+
+**5. Advanced LLM Architectures**
+- **Multi-Stage Retrieval**: Combines fast initial retrieval with precise reranking
+- **Hybrid Search Integration**: Can rerank results from multiple retrieval methods
+- **Query-Dependent Reranking**: Adapts reranking based on query type and complexity
+- **Real-Time Optimization**: Enables real-time improvement of retrieval quality
+
+**6. LLM Performance Optimization**
+- **Speed vs Quality Trade-off**: Balances retrieval speed with response quality
+- **Resource Management**: Optimizes computational resources for better LLM performance
+- **Scalable Solutions**: Provides scalable approaches for production LLM systems
+- **Quality Monitoring**: Enables monitoring and improvement of retrieval quality
+
+**7. Specialized LLM Applications**
+- **Research Assistants**: Perfect for academic LLMs that need high-precision information retrieval
+- **Medical LLMs**: Ideal for healthcare LLMs that need accurate medical information
+- **Legal LLMs**: Excellent for legal LLMs that need precise legal document retrieval
+- **Technical Support**: Great for technical LLMs that need accurate technical documentation
+
+**8. LLM System Architecture**
+- **Pipeline Integration**: Shows how to integrate reranking into existing LLM pipelines
+- **Performance Monitoring**: Demonstrates how to monitor and optimize reranking performance
+- **A/B Testing**: Enables testing different reranking approaches for LLM applications
+- **Continuous Improvement**: Provides framework for continuously improving LLM response quality
+
 ## Key Concepts
 
 ### Two-Stage Retrieval
