@@ -132,7 +132,8 @@ python 08_comparison/demo.py
 4. **[04 - ColBERT Multi-Vector Search](04_colbert/)** - Fine-grained token matching
 5. **[05 - Reranking](05_reranking/)** - Post-processing to improve results
 6. **[06 - Qdrant Integration](06_qdrant_integration/)** - Vector database integration
-7. **[07 - Method Comparison](08_comparison/)** - Side-by-side comparison
+7. **[07 - Model Content Protocol Integration](07_mcp_server/)** - MCP integration
+8. **[08 - Method Comparison](08_comparison/)** - Side-by-side comparison
 
 Each demo folder contains:
 - `demo.py` - Interactive demonstration
@@ -208,9 +209,9 @@ qdrant-fastembed-quickstart/
 ├── 06_qdrant_integration/     # Qdrant integration
 │   ├── demo.py               # Interactive demonstration
 │   └── README.md             # Detailed documentation
-├── 07_mcp_server/       # Model Context Protocol integration
+├── 07_mcp_server/            # Model Context Protocol integration
 │   └── README.md             # Detailed documentation
-└── 08_comparison/             # Method comparison
+└── 08_comparison/            # Method comparison
     ├── demo.py               # Interactive demonstration
     └── README.md             # Detailed documentation
 ```
