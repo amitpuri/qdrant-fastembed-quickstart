@@ -15,7 +15,7 @@ FastEmbed is a lightweight and fast library for generating text embeddings and s
 - **Advanced Retrieval**: miniCOIL, SPLADE, and ColBERT support
 - **Reranking**: Post-processing to improve search results
 - **Qdrant Integration**: Seamless vector database integration
-- **MCP Server**: Model Context Protocol support
+- **MCP Server**: Complete Model Context Protocol server for AI tool integration
 - **Interactive Demos**: Each method has its own demo with explanations
 
 ## Prerequisites
@@ -214,7 +214,9 @@ qdrant-fastembed-quickstart/
 │   ├── demo.py               # Interactive demonstration
 │   └── README.md             # Detailed documentation
 ├── 07_mcp_server/             # MCP Server integration
+│   ├── mcp_server.py         # Complete MCP server implementation
 │   ├── demo.py               # Interactive demonstration
+│   ├── mcp_demo.py           # Complete working demonstration
 │   └── README.md             # Detailed documentation
 └── 08_comparison/             # Method comparison
     ├── demo.py               # Interactive demonstration
@@ -240,7 +242,7 @@ Each FastEmbed method has its own dedicated folder containing:
 4. **[04 - ColBERT](04_colbert/)**: Multi-vector search with fine-grained token matching
 5. **[05 - Reranking](05_reranking/)**: Post-processing to improve search result quality
 6. **[06 - Qdrant Integration](06_qdrant_integration/)**: Vector database integration examples
-7. **[07 - MCP Server](07_mcp_server/)**: Model Context Protocol integration
+7. **[07 - MCP Server](07_mcp_server/)**: Model Context Protocol server for AI tools
 8. **[08 - Comparison](08_comparison/)**: Side-by-side method comparison and selection guide
 
 ### Learning Path
