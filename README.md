@@ -208,6 +208,8 @@ qdrant-fastembed-quickstart/
 ├── 06_qdrant_integration/     # Qdrant integration
 │   ├── demo.py               # Interactive demonstration
 │   └── README.md             # Detailed documentation
+├── 07_mcp_server/       # Model Context Protocol integration
+│   └── README.md             # Detailed documentation
 └── 08_comparison/             # Method comparison
     ├── demo.py               # Interactive demonstration
     └── README.md             # Detailed documentation
@@ -232,7 +234,8 @@ Each FastEmbed method has its own dedicated folder containing:
 4. **[04 - ColBERT](04_colbert/)**: Multi-vector search with fine-grained token matching
 5. **[05 - Reranking](05_reranking/)**: Post-processing to improve search result quality
 6. **[06 - Qdrant Integration](06_qdrant_integration/)**: Vector database integration examples
-7. **[07 - Comparison](08_comparison/)**: Side-by-side method comparison and selection guide
+7  **[07 - MCP Server Integration](07_mcp_server/)**: MCP Server Integration
+8. **[08 - Comparison](08_comparison/)**: Side-by-side method comparison and selection guide
 
 ### Learning Path
 1. **Start with 01 - Basic Embeddings** to understand fundamentals
