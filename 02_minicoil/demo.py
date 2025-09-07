@@ -32,15 +32,29 @@ def run_minicoil_demo():
         print(f"🔑 API Key: {'*' * (len(qdrant_api_key) - 4) + qdrant_api_key[-4:]}")
     print()
     
+    print("📚 What is miniCOIL?")
+    print("   • miniCOIL = mini Contextualized Inverted List")
+    print("   • Combines BM25's keyword matching with neural semantic understanding")
+    print("   • Each term gets a learned importance weight, not just TF-IDF")
+    print("   • Understands context and meaning of keywords")
+    print("   • Perfect for domain-specific search where exact matches matter")
+    print()
+    
     if not QDRANT_AVAILABLE:
         print("❌ Qdrant client not available. Please install: pip install qdrant-client[fastembed]")
         print("💡 This demo shows the concepts without actual Qdrant integration.")
         print()
     
     try:
-        print("📝 miniCOIL is a sparse neural retrieval model that combines BM25 with semantic understanding.")
-        print("🎯 It's designed for cases where exact keyword matches are important but should be ranked by meaning.")
+        print("🎯 What we'll demonstrate:")
+        print("   1. Show how miniCOIL differs from traditional BM25")
+        print("   2. Demonstrate context-aware keyword matching")
+        print("   3. Compare miniCOIL vs BM25 ranking")
+        print("   4. Store sparse vectors in Qdrant")
+        print("   5. Perform semantic keyword search")
         print()
+        
+        input("Press Enter to see miniCOIL in action...")
         
         # Sample documents for miniCOIL demonstration
         minicoil_docs = [
@@ -77,33 +91,60 @@ def run_minicoil_demo():
         ]
         
         query = "Vectors in Medicine"
-        print(f"🔍 Query: '{query}'")
+        print(f"🔍 Step 1: Understanding the Query")
+        print(f"   Query: '{query}'")
+        print(f"   🎯 We want documents about vectors in medical/health context")
         print()
         
-        print("📊 Expected behavior comparison:")
-        print("   🔸 BM25 would match: 'Advanced Vector Calculus for Engineers'")
-        print("      (exact 'vector' keyword match, but engineering context)")
-        print("   🔸 miniCOIL would match: 'Vector Control Strategies in Public Health'")
-        print("      (semantic 'medicine' context understanding)")
+        print("📊 Step 2: How different methods would rank results:")
+        print("   🔸 Traditional BM25 would rank:")
+        print("      1. 'Advanced Vector Calculus for Engineers' (exact 'vector' match)")
+        print("      2. 'Vector Graphics in Modern Web Design' (exact 'vector' match)")
+        print("      ❌ Problem: No understanding of 'medicine' context!")
+        print()
+        print("   🔸 miniCOIL would rank:")
+        print("      1. 'Vector Control Strategies in Public Health' (medical context!)")
+        print("      2. 'Vector-Based Animations for User Interface Design' (less relevant)")
+        print("      ✅ Solution: Understands 'medicine' = 'public health' context!")
         print()
         
-        print("📚 Sample documents containing 'vector':")
+        input("Press Enter to see the detailed comparison...")
+        
+        print("📚 Step 3: Documents containing 'vector' keyword:")
         vector_docs = [doc for doc in minicoil_docs if 'vector' in doc.lower()]
         for i, doc in enumerate(vector_docs[:8], 1):
-            print(f"   {i:2d}. {doc}")
+            # Add context analysis
+            if 'health' in doc.lower() or 'medical' in doc.lower():
+                context = "🏥 Medical context"
+            elif 'graphics' in doc.lower() or 'design' in doc.lower():
+                context = "🎨 Design context"
+            elif 'calculus' in doc.lower() or 'engineering' in doc.lower():
+                context = "🔧 Engineering context"
+            elif 'search' in doc.lower() or 'algorithm' in doc.lower():
+                context = "🔍 Search context"
+            else:
+                context = "📄 General context"
+            print(f"   {i:2d}. {context} - {doc}")
         print()
         
-        print("🔍 miniCOIL scoring formula:")
+        print("🧮 Step 4: miniCOIL Scoring Formula:")
         print("   miniCOIL(D,Q) = Σ IDF(qi) × Importance_D^qi × Meaning^qi×dj")
-        print("   where keyword dj ∈ D equals qi")
+        print("   where:")
+        print("   • IDF(qi) = Inverse Document Frequency (from BM25)")
+        print("   • Importance_D^qi = Learned importance weight for term qi in document D")
+        print("   • Meaning^qi×dj = Semantic similarity between query term qi and document term dj")
+        print("   • dj ∈ D equals qi (exact keyword match required)")
         print()
         
-        print("✨ Key miniCOIL advantages:")
-        print("   • Combines BM25's keyword matching with neural semantic understanding")
-        print("   • Understands context and meaning of keywords")
-        print("   • Better ranking for domain-specific queries")
-        print("   • Maintains exact keyword match requirements")
-        print("   • Scales well with Qdrant's IDF calculations")
+        input("Press Enter to see miniCOIL advantages...")
+        
+        print("✨ Step 5: Key miniCOIL Advantages:")
+        print("   🎯 Combines BM25's keyword matching with neural semantic understanding")
+        print("   🧠 Understands context and meaning of keywords")
+        print("   📈 Better ranking for domain-specific queries")
+        print("   ✅ Maintains exact keyword match requirements")
+        print("   ⚡ Scales well with Qdrant's IDF calculations")
+        print("   🔍 Perfect for hybrid search scenarios")
         print()
         
         print("🎯 When to use miniCOIL:")
@@ -111,13 +152,16 @@ def run_minicoil_demo():
         print("   • But context and meaning matter for ranking")
         print("   • Domain-specific search (medical, legal, technical)")
         print("   • Hybrid search scenarios")
+        print("   • When you need both precision and recall")
         print()
         
         if QDRANT_AVAILABLE:
-            print("\n🔧 Qdrant Integration Demo:")
+            print("🔄 Step 6: Qdrant Integration Demo")
+            input("Press Enter to connect to Qdrant and demonstrate miniCOIL...")
+            
             try:
                 # Connect to Qdrant
-                print(f"   Connecting to Qdrant at {qdrant_url}...")
+                print(f"   🔌 Connecting to Qdrant at {qdrant_url}...")
                 client = QdrantClient(
                     url=qdrant_url,
                     api_key=qdrant_api_key
@@ -126,10 +170,13 @@ def run_minicoil_demo():
                 # Check if Qdrant is accessible
                 collections = client.get_collections()
                 print("   ✅ Connected to Qdrant successfully!")
+                print(f"   📊 Found {len(collections.collections)} existing collections")
                 
                 # Create collection for miniCOIL demo
-                collection_name = "minicoil_demo"
-                print(f"   Creating collection: {collection_name}")
+                collection_name = "fastembed_demo_minicoil"
+                print(f"   🗂️  Creating collection: {collection_name}")
+                print(f"   📊 Sparse vector configuration: miniCOIL with IDF modifier")
+                print(f"   🎯 This enables context-aware keyword matching")
                 
                 try:
                     client.create_collection(
@@ -148,7 +195,10 @@ def run_minicoil_demo():
                         raise e
                 
                 # Upload documents with miniCOIL inference
-                print("   Uploading documents with miniCOIL inference...")
+                print(f"\n   📤 Uploading {len(minicoil_docs[:5])} documents with miniCOIL inference...")
+                print("   🧠 Each document gets sparse vectors with learned term weights")
+                print("   📊 Terms get importance scores based on context, not just frequency")
+                
                 points = []
                 for i, doc in enumerate(minicoil_docs[:5]):  # Use first 5 docs for demo
                     points.append(
@@ -169,10 +219,14 @@ def run_minicoil_demo():
                     collection_name=collection_name,
                     points=points
                 )
-                print(f"   ✅ Uploaded {len(points)} documents with miniCOIL embeddings!")
+                print(f"   ✅ Successfully uploaded {len(points)} documents with miniCOIL embeddings!")
+                print(f"   💾 Sparse vectors stored with context-aware term weights")
                 
                 # Perform a search query
-                print(f"\n🔍 Searching for: '{query}'")
+                print(f"\n🔍 Step 7: Performing miniCOIL Search...")
+                print(f"   🔎 Query: '{query}'")
+                print(f"   🧠 Converting query to miniCOIL sparse representation...")
+                print(f"   🎯 Looking for documents with 'vector' keyword in medical context...")
                 
                 # Search in Qdrant with miniCOIL
                 search_results = client.query_points(
@@ -186,14 +240,16 @@ def run_minicoil_demo():
                     limit=3
                 )
                 
-                print("   📊 miniCOIL search results from Qdrant:")
+                print(f"\n   🎯 miniCOIL search results (context-aware ranking):")
                 for i, result in enumerate(search_results.points, 1):
-                    print(f"      {i}. Score: {result.score:.4f} - {result.payload['text']}")
+                    relevance = "🟢" if result.score > 0.8 else "🟡" if result.score > 0.6 else "🔴"
+                    print(f"      {i}. {relevance} Score: {result.score:.4f}")
+                    print(f"         📄 {result.payload['text']}")
+                    print()
                 
-                # Clean up - delete the demo collection
-                print(f"\n🧹 Cleaning up demo collection...")
-                client.delete_collection(collection_name)
-                print("   ✅ Demo collection deleted")
+                # Note: Collection will be cleaned up by main menu option 9
+                print(f"\n💡 Demo collection '{collection_name}' created successfully!")
+                print(f"   🧹 Use main menu option 9 to clean up all demo resources")
                 
             except Exception as e:
                 print(f"   ❌ Qdrant integration error: {e}")
@@ -206,6 +262,22 @@ def run_minicoil_demo():
             print("   3. Create collection with sparse vector configuration")
             print("   4. Upload documents with miniCOIL inference")
             print("   5. Query with semantic keyword understanding")
+        
+        print(f"\n🎉 miniCOIL Demo Complete! Here's what we accomplished:")
+        print("   ✅ Explained miniCOIL's context-aware keyword matching")
+        print("   ✅ Compared miniCOIL vs traditional BM25 ranking")
+        print("   ✅ Demonstrated semantic understanding of keywords")
+        print("   ✅ Created Qdrant collection with sparse vector support")
+        print("   ✅ Stored documents with miniCOIL embeddings")
+        print("   ✅ Performed context-aware semantic search")
+        print("   💡 Demo collection created for further experimentation")
+        
+        print(f"\n✨ Key miniCOIL takeaways:")
+        print("   • Combines exact keyword matching with semantic understanding")
+        print("   • Perfect for domain-specific search scenarios")
+        print("   • Better ranking than traditional BM25")
+        print("   • Maintains keyword match requirements")
+        print("   • Scales efficiently with Qdrant's sparse vector support")
         
     except Exception as e:
         print(f"❌ Error: {e}")

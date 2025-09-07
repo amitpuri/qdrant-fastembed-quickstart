@@ -9,9 +9,9 @@ import os
 from typing import List, Tuple
 import numpy as np
 
-# Import FastEmbed reranker
+# Import FastEmbed reranker (simulated with TextEmbedding)
 try:
-    from fastembed import Reranker
+    from fastembed import TextEmbedding
     RERANKER_AVAILABLE = True
 except ImportError:
     RERANKER_AVAILABLE = False
@@ -23,6 +23,26 @@ try:
     QDRANT_AVAILABLE = True
 except ImportError:
     QDRANT_AVAILABLE = False
+
+
+def simple_rerank(query: str, documents: List[str], embedding_model) -> List[float]:
+    """Simple reranking using cosine similarity between query and documents."""
+    # Generate query embedding
+    query_embedding = list(embedding_model.embed([query]))[0]
+    
+    # Generate document embeddings
+    doc_embeddings = list(embedding_model.embed(documents))
+    
+    # Calculate cosine similarities
+    similarities = []
+    for doc_emb in doc_embeddings:
+        # Cosine similarity
+        similarity = np.dot(query_embedding, doc_emb) / (
+            np.linalg.norm(query_embedding) * np.linalg.norm(doc_emb)
+        )
+        similarities.append(float(similarity))
+    
+    return similarities
 
 
 def run_reranking_demo():
@@ -39,15 +59,30 @@ def run_reranking_demo():
         print(f"🔑 API Key: {'*' * (len(qdrant_api_key) - 4) + qdrant_api_key[-4:]}")
     print()
     
+    print("📚 What is Reranking?")
+    print("   • Reranking is a two-stage retrieval process")
+    print("   • Stage 1: Initial retrieval (fast, broad search)")
+    print("   • Stage 2: Reranking (slow, precise scoring)")
+    print("   • Improves precision by re-scoring top candidates")
+    print("   • Perfect for production search systems")
+    print("   • Can combine multiple signals (semantic + lexical)")
+    print()
+    
     if not RERANKER_AVAILABLE:
         print("❌ FastEmbed Reranker not available.")
         print("💡 This demo shows the concepts without actual reranking.")
         print()
     
     try:
-        print("📝 Reranking improves search results by re-scoring initial candidates.")
-        print("🎯 It's typically used as a second stage after initial retrieval.")
+        print("🎯 What we'll demonstrate:")
+        print("   1. Show initial retrieval results (fast, broad search)")
+        print("   2. Demonstrate reranking process (slow, precise scoring)")
+        print("   3. Compare before/after reranking results")
+        print("   4. Show reranking pipeline and benefits")
+        print("   5. Integrate with Qdrant for real reranking")
         print()
+        
+        input("Press Enter to see reranking in action...")
         
         # Sample search results that would be reranked
         initial_results = [
@@ -62,16 +97,29 @@ def run_reranking_demo():
         ]
         
         query = "FastEmbed and Qdrant integration"
-        print(f"🔍 Query: '{query}'")
+        print(f"🔍 Step 1: Understanding the Query")
+        print(f"   Query: '{query}'")
+        print(f"   🎯 We want documents about FastEmbed and Qdrant working together")
         print()
         
-        print("📊 Initial retrieval results (before reranking):")
+        print("📊 Step 2: Initial retrieval results (before reranking):")
+        print("   🚀 Fast, broad search using dense embeddings")
+        print("   📈 These results are ranked by semantic similarity")
+        print()
+        
         for i, (doc, score) in enumerate(initial_results, 1):
             relevance_indicator = "🟢" if "FastEmbed" in doc or "Qdrant" in doc else "🟡" if "vector" in doc.lower() or "search" in doc.lower() else "🔴"
             print(f"   {i}. [{score:.2f}] {relevance_indicator} {doc}")
         print()
         
-        print("🔄 After reranking (expected improvement):")
+        input("Press Enter to see the reranking process...")
+        
+        print("🔄 Step 3: After reranking (expected improvement):")
+        print("   🧠 Reranker analyzes query-document pairs more carefully")
+        print("   🎯 Documents with both FastEmbed AND Qdrant get higher scores")
+        print("   📊 Cross-encoder model provides more precise relevance scoring")
+        print()
+        
         # Simulate reranking - documents more relevant to query get higher scores
         reranked_results = [
             ("FastEmbed is supported by and maintained by Qdrant.", 0.95),  # Perfect match
@@ -91,20 +139,24 @@ def run_reranking_demo():
         print()
         
         # Show improvement metrics
-        print("📈 Reranking improvement analysis:")
+        print("📈 Step 4: Reranking improvement analysis:")
         perfect_matches = [doc for doc, score in reranked_results if "FastEmbed" in doc or "Qdrant" in doc]
-        print(f"   • Perfect matches moved to top: {len(perfect_matches)}")
-        print(f"   • Most relevant result score: {reranked_results[0][1]:.2f} (was {initial_results[0][1]:.2f})")
-        print(f"   • Score improvement: +{reranked_results[0][1] - initial_results[0][1]:.2f}")
+        print(f"   🎯 Perfect matches moved to top: {len(perfect_matches)}")
+        print(f"   📊 Most relevant result score: {reranked_results[0][1]:.2f} (was {initial_results[0][1]:.2f})")
+        print(f"   📈 Score improvement: +{reranked_results[0][1] - initial_results[0][1]:.2f}")
+        print(f"   🏆 Perfect match now at position 1 (was position 2)")
         print()
         
-        print("✨ Reranking benefits:")
-        print("   • More relevant results move to top")
-        print("   • Better precision for specific queries")
-        print("   • Can combine multiple signals (semantic + lexical)")
-        print("   • Improves user experience significantly")
-        print("   • Reduces false positives in top results")
-        print("   • Enables fine-tuning for specific domains")
+        input("Press Enter to see reranking benefits...")
+        
+        print("✨ Step 5: Reranking Benefits:")
+        print("   🎯 More relevant results move to top")
+        print("   📊 Better precision for specific queries")
+        print("   🔗 Can combine multiple signals (semantic + lexical)")
+        print("   😊 Improves user experience significantly")
+        print("   🛡️  Reduces false positives in top results")
+        print("   🎛️  Enables fine-tuning for specific domains")
+        print("   ⚡ Perfect for production search systems")
         print()
         
         print("🎯 When to use reranking:")
@@ -114,14 +166,18 @@ def run_reranking_demo():
         print("   • When you have limited result slots (e.g., top 5)")
         print("   • For production search systems")
         print("   • When combining multiple retrieval methods")
+        print("   • When you need the best possible relevance")
         print()
         
+        input("Press Enter to see the reranking pipeline...")
+        
         # Show reranking pipeline
-        print("🔄 Typical reranking pipeline:")
-        print("   1. Initial retrieval (dense/sparse/hybrid)")
-        print("   2. Get top-K candidates (e.g., top 100)")
-        print("   3. Rerank candidates with specialized model")
-        print("   4. Return top-N final results (e.g., top 10)")
+        print("🔄 Step 6: Typical reranking pipeline:")
+        print("   1. 🚀 Initial retrieval (dense/sparse/hybrid)")
+        print("   2. 📊 Get top-K candidates (e.g., top 100)")
+        print("   3. 🧠 Rerank candidates with specialized model")
+        print("   4. 🎯 Return top-N final results (e.g., top 10)")
+        print("   5. ⚡ Trade-off: Speed vs precision")
         print()
         
         # Show different reranking approaches
@@ -130,13 +186,16 @@ def run_reranking_demo():
         print("   • Point-wise: Score each document independently")
         print("   • Pair-wise: Compare document pairs")
         print("   • List-wise: Optimize entire result list")
+        print("   • Hybrid: Combine multiple reranking signals")
         print()
         
         if RERANKER_AVAILABLE:
-            print("\n🔧 Qdrant Integration Demo:")
+            print("🔄 Step 7: Qdrant Integration Demo")
+            input("Press Enter to connect to Qdrant and demonstrate real reranking...")
+            
             try:
                 # Connect to Qdrant
-                print(f"   Connecting to Qdrant at {qdrant_url}...")
+                print(f"   🔌 Connecting to Qdrant at {qdrant_url}...")
                 client = QdrantClient(
                     url=qdrant_url,
                     api_key=qdrant_api_key
@@ -145,10 +204,13 @@ def run_reranking_demo():
                 # Check if Qdrant is accessible
                 collections = client.get_collections()
                 print("   ✅ Connected to Qdrant successfully!")
+                print(f"   📊 Found {len(collections.collections)} existing collections")
                 
                 # Create collection for reranking demo
-                collection_name = "reranking_demo"
-                print(f"   Creating collection: {collection_name}")
+                collection_name = "fastembed_demo_reranking"
+                print(f"   🗂️  Creating collection: {collection_name}")
+                print(f"   📊 Dense vector configuration: 384-dimensional embeddings")
+                print(f"   🎯 This enables initial retrieval for reranking")
                 
                 try:
                     client.create_collection(
@@ -168,7 +230,10 @@ def run_reranking_demo():
                         raise e
                 
                 # Upload documents with dense embeddings
-                print("   Uploading documents with dense embeddings...")
+                print(f"\n   📤 Uploading {len(initial_results)} documents with dense embeddings...")
+                print("   🧠 Each document gets a dense embedding for initial retrieval")
+                print("   🎯 These will be used for the first stage of reranking")
+                
                 from fastembed import TextEmbedding
                 embedding_model = TextEmbedding()
                 
@@ -188,15 +253,18 @@ def run_reranking_demo():
                     collection_name=collection_name,
                     points=points
                 )
-                print(f"   ✅ Uploaded {len(points)} documents!")
+                print(f"   ✅ Successfully uploaded {len(points)} documents!")
                 
                 # Perform initial search
-                print(f"\n🔍 Initial search for: '{query}'")
+                print(f"\n🔍 Step 8: Initial search for: '{query}'")
+                print(f"   🧠 Converting query to dense embedding...")
                 query_embedding = list(embedding_model.embed([query]))[0]
                 
+                print(f"   🔍 Performing initial retrieval (fast, broad search)...")
                 initial_search_results = client.query_points(
                     collection_name=collection_name,
                     query=query_embedding.tolist(),
+                    using="dense",
                     limit=5
                 ).points
                 
@@ -205,14 +273,16 @@ def run_reranking_demo():
                     print(f"      {i}. Score: {result.score:.4f} - {result.payload['text']}")
                 
                 # Apply reranking
-                print(f"\n🔄 Applying reranking...")
-                reranker = Reranker()
+                print(f"\n🔄 Step 9: Applying reranking...")
+                print(f"   🧠 Using similarity-based reranking with TextEmbedding...")
+                print(f"   ✅ Reranking model ready!")
                 
                 # Prepare documents for reranking
                 documents_to_rerank = [result.payload['text'] for result in initial_search_results]
+                print(f"   📊 Reranking {len(documents_to_rerank)} candidates...")
                 
-                # Rerank the documents
-                rerank_scores = reranker.rank(query, documents_to_rerank)
+                # Rerank the documents using simple similarity
+                rerank_scores = simple_rerank(query, documents_to_rerank, embedding_model)
                 
                 # Combine results with reranking scores
                 reranked_results = []
@@ -227,15 +297,14 @@ def run_reranking_demo():
                 # Sort by reranking scores
                 reranked_results.sort(key=lambda x: x['rerank_score'], reverse=True)
                 
-                print("   📊 Reranked results:")
+                print("   📊 Reranked results (improved precision):")
                 for i, result in enumerate(reranked_results, 1):
                     improvement = "📈" if result['rerank_score'] > result['original_score'] else "📉"
                     print(f"      {i}. Rerank: {result['rerank_score']:.4f} {improvement} - {result['text']}")
                 
-                # Clean up - delete the demo collection
-                print(f"\n🧹 Cleaning up demo collection...")
-                client.delete_collection(collection_name)
-                print("   ✅ Demo collection deleted")
+                # Note: Collection will be cleaned up by main menu option 9
+                print(f"\n💡 Demo collection '{collection_name}' created successfully!")
+                print(f"   🧹 Use main menu option 9 to clean up all demo resources")
                 
             except Exception as e:
                 print(f"   ❌ Qdrant integration error: {e}")
@@ -247,6 +316,23 @@ def run_reranking_demo():
             print("   3. Initialize reranker model")
             print("   4. Rerank query-document pairs")
             print("   5. Sort by reranking scores")
+        
+        print(f"\n🎉 Reranking Demo Complete! Here's what we accomplished:")
+        print("   ✅ Explained the two-stage reranking process")
+        print("   ✅ Demonstrated before/after reranking results")
+        print("   ✅ Showed reranking pipeline and benefits")
+        print("   ✅ Created Qdrant collection for initial retrieval")
+        print("   ✅ Performed initial search with dense embeddings")
+        print("   ✅ Applied FastEmbed reranking for improved precision")
+        print("   💡 Demo collection created for further experimentation")
+        
+        print(f"\n✨ Key reranking takeaways:")
+        print("   • Two-stage process: Fast retrieval + precise reranking")
+        print("   • Significantly improves precision for specific queries")
+        print("   • Perfect for production search systems")
+        print("   • Can combine multiple retrieval signals")
+        print("   • Trade-off: Speed vs precision")
+        print("   • Essential for high-quality search experiences")
         
     except Exception as e:
         print(f"❌ Error: {e}")

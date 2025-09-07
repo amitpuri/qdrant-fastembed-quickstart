@@ -190,7 +190,7 @@ def run_qdrant_integration_demo():
                 print(f"   📊 Found {len(collections.collections)} existing collections")
                 
                 # Create a comprehensive demo collection
-                collection_name = "fastembed_demo_collection"
+                collection_name = "fastembed_demo_integration"
                 print(f"\n   Creating comprehensive demo collection: {collection_name}")
                 
                 try:

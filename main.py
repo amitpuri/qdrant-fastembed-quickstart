@@ -9,7 +9,6 @@ This main menu provides easy access to all FastEmbed demonstrations:
 - ColBERT multi-vector search
 - Reranking
 - Qdrant integration
-- MCP Server integration
 - Method comparison
 
 Each demo is located in its own folder with detailed documentation.
@@ -36,10 +35,9 @@ class FastEmbedDemo:
             "4": ("04_colbert", "ColBERT Multi-Vector Search"),
             "5": ("05_reranking", "Reranking"),
             "6": ("06_qdrant_integration", "Qdrant Integration Demo"),
-            "7": ("07_mcp_server", "MCP Server Integration"),
-            "8": ("08_comparison", "Compare All Methods"),
-            "9": ("cleanup", "Clean Up Demo Resources"),
-            "10": ("exit", "Exit")
+            "7": ("08_comparison", "Compare All Methods"),
+            "8": ("cleanup", "Clean Up Demo Resources"),
+            "9": ("exit", "Exit")
         }
         
         # Load Qdrant configuration from environment variables
@@ -130,7 +128,15 @@ class FastEmbedDemo:
             
             # Define demo collection names (comprehensive list)
             demo_collections = [
-                # Basic embeddings demo
+                # New FastEmbed demo collections (with prefix)
+                "fastembed_demo_basic_embeddings",
+                "fastembed_demo_minicoil",
+                "fastembed_demo_splade",
+                "fastembed_demo_colbert",
+                "fastembed_demo_reranking",
+                "fastembed_demo_integration",
+                
+                # Legacy demo collection names (for backward compatibility)
                 "basic_embeddings_demo",
                 "basic_embeddings",
                 "dense_embeddings_demo",
@@ -161,10 +167,6 @@ class FastEmbedDemo:
                 "qdrant_integration_demo",
                 "integration_demo",
                 
-                # MCP server demo
-                "mcp_demo_collection",
-                "mcp_server_demo",
-                "mcp_demo",
                 
                 # Comparison demo
                 "comparison_demo_collection",
@@ -196,7 +198,7 @@ class FastEmbedDemo:
                 
                 # Also check for patterns that indicate demo collections
                 demo_indicators = [
-                    "_demo", "demo_", "_test", "test_", "_sample", "sample_",
+                    "fastembed_demo_", "_demo", "demo_", "_test", "test_", "_sample", "sample_",
                     "_example", "example_", "_tutorial", "tutorial_",
                     "_quickstart", "quickstart_", "_playground", "playground_"
                 ]
@@ -281,9 +283,6 @@ class FastEmbedDemo:
         print("├── qdrant_integration/        # Qdrant integration")
         print("│   ├── demo.py")
         print("│   └── README.md")
-        print("├── mcp_server/                # MCP Server integration")
-        print("│   ├── demo.py")
-        print("│   └── README.md")
         print("└── comparison/                # Method comparison")
         print("    ├── demo.py")
         print("    └── README.md")
@@ -298,7 +297,7 @@ class FastEmbedDemo:
             self.show_menu()
             
             try:
-                choice = input("\nEnter your choice (1-10): ").strip()
+                choice = input("\nEnter your choice (1-9): ").strip()
                 
                 if choice in self.demo_folders:
                     folder_name, description = self.demo_folders[choice]
@@ -312,7 +311,7 @@ class FastEmbedDemo:
                 elif choice.lower() == "help":
                     self.show_project_structure()
                 else:
-                    print("❌ Invalid choice. Please enter a number between 1-10.")
+                    print("❌ Invalid choice. Please enter a number between 1-9.")
                     print("💡 Type 'help' to see project structure")
                 
                 input("\nPress Enter to continue...")
